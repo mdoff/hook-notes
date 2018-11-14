@@ -1,5 +1,9 @@
 # React hook demo app
 
+# Demo
+
+You can view the demo of the application [here](https://sleepy-kirch-f890ec.netlify.com/)
+
 ## Install dependencies
 
 ```
