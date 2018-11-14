@@ -2,7 +2,7 @@
 
 ## Demo
 
-You can view the demo of the application [here](https://sleepy-kirch-f890ec.netlify.com/)
+You can view the demo of the application [here](https://mdoff-react-hook-demo.netlify.com)
 
 ## Install dependencies
 
