@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useReducer } from 'react';
-
+import Context from './context';
 import Note from './components/note';
 import AddNote from './components/addNote';
 
@@ -8,7 +8,7 @@ import 'gestalt/dist/gestalt.css';
 export default function() {
   const [state, dispatch] = useCustomReducer();
   useDidMount(() => {
-    console.log('acton on mount');
+    console.log('demo action on mount');
   });
 
   useEffect(
@@ -19,20 +19,23 @@ export default function() {
   );
 
   return (
-    <div>
-      {state.map((note, index) => (
-        <Note
-          key={`note-${index}`}
-          onDelete={() => dispatch({ type: 'NOTE_DELETE', index })}
-          onSave={note => dispatch({ type: 'NOTE_SAVE', index, note })}
-          {...note}
-        />
-      ))}
-      <AddNote onClick={() => dispatch({ type: 'NOTE_ADD' })} />
-    </div>
+    <Context.Provider value='light'>
+      <div>
+        {state.map((note, index) => (
+          <Note
+            key={`note-${index}`}
+            onDelete={() => dispatch({ type: 'NOTE_DELETE', index })}
+            onSave={note => dispatch({ type: 'NOTE_SAVE', index, note })}
+            {...note}
+          />
+        ))}
+        <AddNote onClick={() => dispatch({ type: 'NOTE_ADD' })} />
+      </div>
+    </Context.Provider>
   );
 }
 
+/** Custom hook with useEffect */
 function useDidMount(callback) {
   const [mounted, setMounted] = useState(false);
   useEffect(
@@ -46,6 +49,7 @@ function useDidMount(callback) {
   );
 }
 
+/** Custom Hook with reducer */
 function useCustomReducer(initialState = []) {
   return useReducer(function(state, action) {
     switch (action.type) {
